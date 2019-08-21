@@ -4,13 +4,13 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/cinghie/yii2-articles
+* @github https://github.com/MahmudS/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
-* @package yii2-articles
+* @package mastrack-articles
 * @version 0.6.3
 */
 
-use cinghie\articles\assets\ArticlesAsset;
+use MahmudS\articles\assets\ArticlesAsset;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -18,14 +18,14 @@ use yii\widgets\Pjax;
 
 // Load Articles Assets
 ArticlesAsset::register($this);
-$asset = $this->assetBundles['cinghie\articles\assets\ArticlesAsset'];
+$asset = $this->assetBundles['MahmudS\articles\assets\ArticlesAsset'];
 
 // Set Title and Breadcrumbs
 $this->title = Yii::t('articles', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 
 // Render Yii2-Articles Menu
-echo Yii::$app->view->renderFile('@vendor/cinghie/yii2-articles/views/default/_menu.php');
+echo Yii::$app->view->renderFile('@vendor/MahmudS/mastrack-articles/views/default/_menu.php');
 
 // Register action buttons js
 $this->registerJs('

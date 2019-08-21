@@ -4,17 +4,17 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/cinghie/yii2-articles
+* @github https://github.com/MahmudS/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
-* @package yii2-articles
+* @package mastrack-articles
 * @version 0.6.3
 */
 
-namespace cinghie\articles\controllers;
+namespace MahmudS\articles\controllers;
 
 use Yii;
-use cinghie\articles\models\Attachments;
-use cinghie\articles\models\AttachmentsSearch;
+use MahmudS\articles\models\Attachments;
+use MahmudS\articles\models\AttachmentsSearch;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;

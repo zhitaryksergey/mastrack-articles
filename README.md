@@ -22,13 +22,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require cinghie/yii2-articles "*"
+$ php composer.phar require MahmudS/mastrack-articles "*"
 ```
 
 or add
 
 ```
-"cinghie/yii2-articles": "*"
+"MahmudS/mastrack-articles": "*"
 ```
 
 Configuration
@@ -43,7 +43,7 @@ Copy img folder to your webroot
 Make sure that you have properly configured `db` application component
 and run the following command:
 ```
-$ php yii migrate/up --migrationPath=@vendor/cinghie/yii2-articles/migrations
+$ php yii migrate/up --migrationPath=@vendor/MahmudS/mastrack-articles/migrations
 ```
 
 ### 3. Set configuration file
@@ -55,7 +55,7 @@ Set on your configuration file, in modules section
 
 	// Module Articles
 	'articles' => [
-		'class' => 'cinghie\articles\Articles',
+		'class' => 'MahmudS\articles\Articles',
 		'userClass' => 'dektrium\user\models\User',
 		
 		// Select Languages allowed

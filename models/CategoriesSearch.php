@@ -4,21 +4,21 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/cinghie/yii2-articles
+* @github https://github.com/MahmudS/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
-* @package yii2-articles
+* @package mastrack-articles
 * @version 0.6.3
 */
 
-namespace cinghie\articles\models;
+namespace MahmudS\articles\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use cinghie\articles\models\Categories;
+use MahmudS\articles\models\Categories;
 
 /**
- * CategoriesSearch represents the model behind the search form about `cinghie\articles\models\Attachments`.
+ * CategoriesSearch represents the model behind the search form about `MahmudS\articles\models\Attachments`.
  */
 class CategoriesSearch extends Categories
 {

@@ -1,8 +1,8 @@
 {
-    "name": "cinghie/yii2-articles",
+    "name": "MahmudS/mastrack-articles",
     "description": "Yii2 Articles to create, manage, and delete articles in a Yii2 site.",
     "keywords": ["yii2", "module", "articles", "contents","category","seo"],
-    "homepage": "https://github.com/cinghie/yii2-articles",
+    "homepage": "https://github.com/MahmudS/mastrack-articles",
     "type": "yii2-extension",
     "license": "BSD 3-Clause",
     "authors": [
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cinghie\\articles\\": ""
+            "MahmudS\\articles\\": ""
         }
     }
 }

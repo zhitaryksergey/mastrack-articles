@@ -4,13 +4,13 @@
  * @copyright Copyright &copy; Gogodigital Srls
  * @company Gogodigital Srls - Wide ICT Solutions 
  * @website http://www.gogodigital.it
- * @github https://github.com/cinghie/yii2-articles
+ * @github https://github.com/MahmudS/mastrack-articles
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
- * @package yii2-articles
+ * @package mastrack-articles
  * @version 0.6.3
  */
 
-use cinghie\articles\migrations\Migration;
+use MahmudS\articles\migrations\Migration;
 use yii\db\Schema;
 
 class m151021_200427_create_article_items_table extends Migration

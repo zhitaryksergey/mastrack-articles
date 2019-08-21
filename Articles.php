@@ -4,20 +4,20 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/cinghie/yii2-articles
+* @github https://github.com/MahmudS/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
-* @package yii2-articles
+* @package mastrack-articles
 * @version 0.6.3
 */
 
-namespace cinghie\articles;
+namespace MahmudS\articles;
 
 use Yii;
 
 class Articles extends \yii\base\Module
 {
 
-    public $controllerNamespace = 'cinghie\articles\controllers';
+    public $controllerNamespace = 'MahmudS\articles\controllers';
 
 		// Select User Class
 	public $userClass         = 'dektrium\user\models\User';
