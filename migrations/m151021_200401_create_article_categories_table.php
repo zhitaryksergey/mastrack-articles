@@ -4,13 +4,13 @@
  * @copyright Copyright &copy; Gogodigital Srls
  * @company Gogodigital Srls - Wide ICT Solutions 
  * @website http://www.gogodigital.it
- * @github https://github.com/MahmudS/mastrack-articles
+ * @github https://github.com/mahmuds/mastrack-articles
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package mastrack-articles
  * @version 0.6.3
  */
 
-use MahmudS\articles\migrations\Migration;
+use mahmuds\articles\migrations\Migration;
 use yii\db\Schema;
 
 class m151021_200401_create_article_categories_table extends Migration

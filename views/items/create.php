@@ -4,7 +4,7 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/MahmudS/mastrack-articles
+* @github https://github.com/mahmuds/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package mastrack-articles
 * @version 0.6.3
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('articles', 'Items'), 'url' 
 $this->params['breadcrumbs'][] = $this->title;
 
 // Render Yii2-Articles Menu
-echo Yii::$app->view->renderFile('@vendor/MahmudS/mastrack-articles/views/default/_menu.php');
+echo Yii::$app->view->renderFile('@vendor/mahmuds/mastrack-articles/views/default/_menu.php');
 
 ?>
 <div class="items-create">

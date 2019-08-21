@@ -4,7 +4,7 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/MahmudS/mastrack-articles
+* @github https://github.com/mahmuds/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package mastrack-articles
 * @version 0.6.3
@@ -12,24 +12,24 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use MahmudS\articles\assets\ArticlesAsset;
+use mahmuds\articles\assets\ArticlesAsset;
 
 // Load Articles Assets
 ArticlesAsset::register($this);
-$asset = $this->assetBundles['MahmudS\articles\assets\ArticlesAsset'];
+$asset = $this->assetBundles['mahmuds\articles\assets\ArticlesAsset'];
 
 // Set Title and Breadcrumbs
 $this->title = Html::encode($model->title);
 $this->params['breadcrumbs'][] = $this->title;
 
 /* Render MetaData */
-$this->render('@vendor/MahmudS/mastrack-articles/views/default/_meta_data.php',[ 'model' => $model,]);
+$this->render('@vendor/mahmuds/mastrack-articles/views/default/_meta_data.php',[ 'model' => $model,]);
 
 /* Facebook Open Graph */
-$this->render('@vendor/MahmudS/mastrack-articles/views/default/_meta_facebook.php',[ 'model' => $model,]);
+$this->render('@vendor/mahmuds/mastrack-articles/views/default/_meta_facebook.php',[ 'model' => $model,]);
 
 /* Twitter Card */
-$this->render('@vendor/MahmudS/mastrack-articles/views/default/_meta_twitter.php',[ 'model' => $model,]);
+$this->render('@vendor/mahmuds/mastrack-articles/views/default/_meta_twitter.php',[ 'model' => $model,]);
 
 ?>
 

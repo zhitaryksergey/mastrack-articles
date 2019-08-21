@@ -4,21 +4,21 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/MahmudS/mastrack-articles
+* @github https://github.com/mahmuds/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package mastrack-articles
 * @version 0.6.3
 */
 
-namespace MahmudS\articles\models;
+namespace mahmuds\articles\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use MahmudS\articles\models\Categories;
+use mahmuds\articles\models\Categories;
 
 /**
- * CategoriesSearch represents the model behind the search form about `MahmudS\articles\models\Attachments`.
+ * CategoriesSearch represents the model behind the search form about `mahmuds\articles\models\Attachments`.
  */
 class CategoriesSearch extends Categories
 {

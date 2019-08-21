@@ -4,17 +4,17 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/MahmudS/mastrack-articles
+* @github https://github.com/mahmuds/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package mastrack-articles
 * @version 0.6.3
 */
 
-namespace MahmudS\articles\controllers;
+namespace mahmuds\articles\controllers;
 
 use Yii;
-use MahmudS\articles\models\Items;
-use MahmudS\articles\models\ItemsSearch;
+use mahmuds\articles\models\Items;
+use mahmuds\articles\models\ItemsSearch;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;

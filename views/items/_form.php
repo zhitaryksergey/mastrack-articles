@@ -4,14 +4,14 @@
 * @copyright Copyright &copy; Gogodigital Srls
 * @company Gogodigital Srls - Wide ICT Solutions 
 * @website http://www.gogodigital.it
-* @github https://github.com/MahmudS/mastrack-articles
+* @github https://github.com/mahmuds/mastrack-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package mastrack-articles
 * @version 0.6.3
 */
 
 use yii\helpers\Html;
-use MahmudS\articles\assets\ArticlesAsset;
+use mahmuds\articles\assets\ArticlesAsset;
 
 // Load Kartik Libraries
 use kartik\widgets\ActiveForm;
@@ -26,7 +26,7 @@ use kartik\markdown\MarkdownEditor;
 
 // Load Articles Assets
 ArticlesAsset::register($this);
-$asset = $this->assetBundles['MahmudS\articles\assets\ArticlesAsset'];
+$asset = $this->assetBundles['mahmuds\articles\assets\ArticlesAsset'];
 
 // Get current user
 $user     = Yii::$app->user->identity;

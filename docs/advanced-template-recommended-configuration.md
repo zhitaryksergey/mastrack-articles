@@ -22,7 +22,7 @@ Recommended Configuration for Advanced Template
 
         // Yii2 Articles
         'articles' => [
-            'class' => 'MahmudS\articles\Articles',
+            'class' => 'mahmuds\articles\Articles',
             'userClass' => 'dektrium\user\models\User',
 			// Select Languages allowed
 			'languages' => [ 

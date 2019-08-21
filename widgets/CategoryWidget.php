@@ -4,16 +4,16 @@
  * @copyright Copyright &copy; Gogodigital Srls
  * @company Gogodigital Srls - Wide ICT Solutions
  * @website http://www.gogodigital.it
- * @github https://github.com/MahmudS/mastrack-articles
+ * @github https://github.com/mahmuds/mastrack-articles
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package mastrack-articles
  * @version 0.6.3
  */
 
-namespace MahmudS\articles\widgets;
+namespace mahmuds\articles\widgets;
 
-use MahmudS\articles\models\Categories;
-use MahmudS\articles\widgets\ItemWidget;
+use mahmuds\articles\models\Categories;
+use mahmuds\articles\widgets\ItemWidget;
 use yii\bootstrap\Widget;
 
 class CategoryWidget extends Widget
