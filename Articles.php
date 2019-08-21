@@ -32,28 +32,32 @@ class Articles extends \yii\base\Module
 	public $editor 	          = "imperavi";
 
 	// Select Path To Upload Category Image
-	public $categoryImagePath = "@webroot/img/articles/categories/";
+	public $categoryImagePath = "@webroot/images/articles/categories/";
+    public $categoryImagePath_ecommerce = "images/articles/categories/";
 
 	// Select URL To Upload Category Image
-	public $categoryImageURL  = "@web/img/articles/categories/";
+    public $categoryImageURL  = "@web/images/articles/categories/";
 
 	// Select Path To Upload Category Thumb
-	public $categoryThumbPath = "@webroot/img/articles/categories/thumb/";
+	public $categoryThumbPath = "@webroot/images/articles/categories/thumb/";
+	public $categoryThumbPath_ecommerce = "images/articles/categories/thumb/";
 
 	// Select URL To Upload Category Image
-	public $categoryThumbURL  = "@web/img/articles/categories/thumb/";
+	public $categoryThumbURL  = "@web/images/articles/categories/thumb/";
 
 	// Select Path To Upload Item Image
-	public $itemImagePath  	  = "@webroot/img/articles/items/";
+	public $itemImagePath  	  = "@webroot/images/articles/items/";
+	public $itemImagePath_ecommerce = "images/articles/items/";
 
 	// Select URL To Upload Item Image
-	public $itemImageURL  	  = "@web/img/articles/items/";
+	public $itemImageURL  	  = "@web/images/articles/items/";
 
 	// Select Path To Upload Item Thumb
-	public $itemThumbPath     = "@webroot/img/articles/items/thumb/";
+	public $itemThumbPath     = "@webroot/images/articles/items/thumb/";
+	public $itemThumbPath_ecommerce = "images/articles/items/thumb/";
 
 	// Select URL To Upload Item Thumb
-	public $itemThumbURL      = "@web/img/articles/items/thumb/";
+	public $itemThumbURL      = "@web/images/articles/items/thumb/";
 
 	// Select Image Name: categoryname, original, casual
 	public $imageNameType 	  = "categoryname";
@@ -63,6 +67,7 @@ class Articles extends \yii\base\Module
 
 	// Select Path To Upload Attachments
 	public $attachPath        = "@webroot/attachments/";
+	public $attachPath_ecommerce = "/attachments/";
 
 	// Select URL To Upload Attachment
 	public $attachURL         = "@web/attachments/";
@@ -74,11 +79,8 @@ class Articles extends \yii\base\Module
 	public $showTitles        = true;
 
 	// Thumbnails Options
-	public $thumbOptions =	[ 
-		'small'  => ['quality' => 100, 'width' => 200, 'height' => 150],
-		'medium' => ['quality' => 100, 'width' => 300, 'height' => 200],
-		'large'  => ['quality' => 100, 'width' => 400, 'height' => 300],
-		'extra'  => ['quality' => 100, 'width' => 600, 'height' => 400],
+	public $thumbOptions =	[
+		'small'  => ['quality' => 100, 'width' => 600, 'height' => 450],
 	];
 
 	// Url Rules
@@ -90,6 +92,7 @@ class Articles extends \yii\base\Module
 	/**
 	 * @inheritdoc
 	 */
+
     public function init()
     {
         parent::init();
@@ -127,21 +130,31 @@ class Articles extends \yii\base\Module
         {
             mkdir(Yii::getAlias($this->categoryThumbPath), 0755, true);
         }
-
+        foreach ($this->thumbOptions as $thumb => $array)
+        {
+            if(!file_exists(Yii::getAlias($this->categoryThumbPath . $thumb . '/')))
+            {
+                mkdir(Yii::getAlias($this->categoryThumbPath . $thumb . '/'), 0755, true);
+            }
+        }
         if(!file_exists(Yii::getAlias($this->itemImagePath)))
         {
             mkdir(Yii::getAlias($this->itemImagePath), 0755, true);
         }
-
         if(!file_exists(Yii::getAlias($this->itemThumbPath)))
         {
             mkdir(Yii::getAlias($this->itemThumbPath), 0755, true);
         }
-
+        foreach ($this->thumbOptions as $thumb => $array)
+        {
+            if(!file_exists(Yii::getAlias($this->itemThumbPath . $thumb . '/')))
+            {
+                mkdir(Yii::getAlias($this->itemThumbPath . $thumb . '/'), 0755, true);
+            }
+        }
         if(!file_exists(Yii::getAlias($this->attachPath)))
         {
             mkdir(Yii::getAlias($this->attachPath), 0755, true);
         }
     }
-
 }

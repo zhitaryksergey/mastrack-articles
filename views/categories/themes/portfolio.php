@@ -15,7 +15,7 @@ use yii\helpers\HtmlPurifier;
 
 ?>
 
-<main class="<?php echo $model->theme ?> categories-view" role="main">
+<main class="<?php echo $model->theme ?> categories-view container" role="main">
     <header class="page-header">
         <div class="category-image">
             <?= Html::img($model->getImageThumbUrl($params->categoriesImageWidth), [

@@ -15,18 +15,18 @@ hr {
 /* Select2 */
 
 span.select2.select2-container.select2-container--krajee {
-	width: 100%;
+    width: 100%;
 }
 
 /* Dashboard View */
 
 .yii2articles-admin-menu {
-	padding: 0 0 25px 0;
+    padding: 0 0 25px 0;
 }
 .yii2articles-admin-menu .btn-default {
-	background-color: #3c8dbc;
-	border-color: #eee;
-	color: #fff;
+    background-color: #3c8dbc;
+    border-color: #eee;
+    color: #fff;
 }
 .yii2articles-admin-menu .btn-default:hover {
     background-color: #00a65a;
@@ -36,17 +36,17 @@ span.select2.select2-container.select2-container--krajee {
 /* Category Form*/
 
 div.separator {
-	margin-top: 25px;
+    margin-top: 25px;
 }
 p.bg-info {
-	padding: 15px;
+    padding: 15px;
 }
 div#params h4 {
-	background-color: #5CB85C;
-	color: #FFFFFF!important;
-	margin: 0 0 15px;
-	padding: 10px;
-	text-align: center;
+    background-color: #5CB85C;
+    color: #FFFFFF!important;
+    margin: 0 0 15px;
+    padding: 10px;
+    text-align: center;
 }
 
 /* Categories View */
@@ -81,7 +81,6 @@ div#params h4 {
 .blog .blog-post .post-thumb a img {
     display: block;
     height: auto;
-    max-height: 185px;
     max-width: 100%;
     width: 100%;
 }
@@ -220,12 +219,19 @@ div#params h4 {
 /* Item Form */
 
 .items-form .file-input .btn .glyphicon {
-	margin-right: 6px;
+    margin-right: 6px;
 }
-
+figure .center-block {
+    margin-top:50px;
+    margin-bottom:50px;
+}
 /* Items View */
-
-
+.item-view .intro-text p,
+.item-view .full-text p {
+    line-height:1.8;
+    margin-top:30px;
+    margin-bottom:30px;
+}
 
 /* Attachment Form */
 

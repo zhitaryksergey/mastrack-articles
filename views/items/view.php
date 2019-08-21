@@ -33,33 +33,35 @@ $this->render('@vendor/cinghie/yii2-articles/views/default/_meta_twitter.php',[ 
 
 ?>
 
-<article class="item-view">
-	<header>
-    	<h1><?= Html::encode($this->title) ?></h1>
-        <time pubdate datetime="<?= $model->created ?>"></time>
-        <?php if ($model->image): ?>
-            <figure>
-                <img class="img-responsive center-block img-rounded" src="<?= $model->getImageUrl() ?>" alt="<?= $this->title ?>" title="<?= $this->title ?>">
-                <?php if ($model->image_caption): ?>
-                	<figcaption class="center-block">
-                		<?= $model->image_caption ?>
-                    </figcaption>
-                <?php endif; ?>
-            </figure>
+<div class="container">
+    <article class="item-view">
+        <header>
+            <h1><?= Html::encode($this->title) ?></h1>
+            <time pubdate datetime="<?= $model->created ?>"></time>
+            <?php if ($model->image): ?>
+                <figure>
+                    <img class="img-responsive center-block img-rounded" src="<?= $model->getImageThumbUrl('small') ?>" alt="<?= $this->title ?>" title="<?= $this->title ?>">
+                    <?php if ($model->image_caption): ?>
+                        <figcaption class="center-block">
+                            <?= $model->image_caption ?>
+                        </figcaption>
+                    <?php endif; ?>
+                </figure>
+            <?php endif; ?>
+        </header>
+        <?php if ($model->introtext && $model->getOption($model->category->params,"itemIntroText") == "Yes"): ?>
+            <div class="intro-text">
+                <?= $model->introtext ?>
+            </div>
+
         <?php endif; ?>
-    </header>
-    <?php if ($model->introtext && $model->getOption($model->category->params,"itemIntroText") == "Yes"): ?>
-        <div class="intro-text">
-            <?= $model->introtext ?>
-        </div>
-        <hr>
-    <?php endif; ?>
-    <?php if ($model->fulltext): ?>
-        <div class="full-text">
-        	<?= $model->fulltext ?>    
-        </div>
-    <?php endif; ?>
-</article>
+        <?php if ($model->fulltext): ?>
+            <div class="full-text">
+                <?= $model->fulltext ?>
+            </div>
+        <?php endif; ?>
+    </article>
+</div>
 
 <?php if($model->getOption($model->category->params,"itemDebug") == "Yes"): ?>
 

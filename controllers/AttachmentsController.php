@@ -115,12 +115,14 @@ class AttachmentsController extends Controller
             {
                 // Upload Attachments if is not Null
                 $attachPath  = Yii::getAlias(Yii::$app->controller->module->attachPath);
+                $attachPath_ecommerce  = Yii::getAlias(Yii::$app->controller->module->attachPath_ecommerce);
                 $attachName  = $model->title;
                 $attachType  = "original";
                 $attachField = "filename";
 
                 // Create UploadFile Instance
-                $attach = $model->uploadFile($attachName,$attachType,$attachPath,$attachField);
+                $attach = $model->uploadFile($attachName,$attachType,$attachPath,$attachField,false);
+                $model->uploadFile($attachName,$attachType,$attachPath_ecommerce,$attachField,true);
                 $model->filename = $attach->name;
 
                 if ( $model->save() )
@@ -169,12 +171,14 @@ class AttachmentsController extends Controller
 
                 // Upload Attachments if is not Null
                 $attachPath  = Yii::getAlias(Yii::$app->controller->module->attachPath);
+                $attachPath_ecommerce  = Yii::getAlias(Yii::$app->controller->module->attachPath_ecommerce);
                 $attachName  = $model->title;
                 $attachType  = "original";
                 $attachField = "filename";
 
                 // Create UploadFile Instance
-                $attach = $model->uploadFile($attachName,$attachType,$attachPath,$attachField);
+                $attach = $model->uploadFile($attachName,$attachType,$attachPath,$attachField,false);
+                $model->uploadFile($attachName,$attachType,$attachPath_ecommerce,$attachField,true);
                 $model->filename = $attach->name;
 
                 if($model->save())

@@ -14,6 +14,7 @@ namespace cinghie\articles\controllers;
 
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\helpers\Url;
 
 class DefaultController extends Controller
 {
@@ -35,7 +36,8 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect(Url::to('/articles/items/index'));
+        //return $this->render('index');
     }
 
 }

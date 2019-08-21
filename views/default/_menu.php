@@ -20,10 +20,10 @@ use yii\bootstrap\Nav;
 		'style' => 'margin-bottom: 15px',
 	],
 	'items' => [
-		[
+		/*[
 			'label'   => Yii::t('articles', 'Dashboard'),
 			'url'     => ['/articles/default/index'],
-		],
+		],*/
 		[
 			'label'   => Yii::t('articles', 'Articles'),
 			'url'     => ['/articles/items/index'],
@@ -31,10 +31,10 @@ use yii\bootstrap\Nav;
 		[
 			'label'   => Yii::t('articles', 'Categories'),
 			'url'     => ['/articles/categories/index'],
-		],
+		]/*,
 		[
 			'label'   => Yii::t('articles', 'Attachments'),
 			'url'     => ['/articles/attachments/index'],
-		],
+		],*/
 	],
 ]) ?>

@@ -19,6 +19,7 @@ class Categories extends Articles
     /**
      * @inheritdoc
      */
+
     public static function tableName() {
         return '{{%article_categories}}';
     }
@@ -121,11 +122,10 @@ class Categories extends Articles
      * fetch stored file url
      * @return string
      */
-    public function getImageUrl() 
+    public function getImageUrl()
     {
-        // return a default image placeholder if your source avatar is not found
-        $file = isset($this->image) ? $this->image : 'default.jpg';
-        return Yii::getAlias(Yii::$app->controller->module->categoryImageURL).$file;
+        $image   = Yii::$app->controller->module->categoryImagePath_ecommerce.$this->image;
+        return Yii::$app->s3bucketService->getPresignedUrl($image, '+2 hours');
     }
 
     /**
@@ -133,11 +133,10 @@ class Categories extends Articles
      * @param $size
      * @return string
      */
-    public function getImageThumbUrl($size)
+    public function getImageThumbUrl($size = 'small')
     {
-        // return a default image placeholder if your source avatar is not found
-        $file = isset($this->image) ? $this->image : 'default.jpg';
-        return Yii::getAlias(Yii::$app->controller->module->categoryImageURL)."thumb/".$size."/".$file;
+        $image   = Yii::$app->controller->module->categoryThumbPath_ecommerce.$size.'/'.$this->image;
+        return Yii::$app->s3bucketService->getPresignedUrl($image, '+2 hours');
     }
 	
 	/**
@@ -146,31 +145,24 @@ class Categories extends Articles
     */
 	public function deleteImage() 
 	{
-		$image   = Yii::getAlias(Yii::$app->controller->module->categoryImagePath).$this->image;
-		$imageS  = Yii::getAlias(Yii::$app->controller->module->categoryThumbPath."small/").$this->image;
-		$imageM  = Yii::getAlias(Yii::$app->controller->module->categoryThumbPath."medium/").$this->image;
-		$imageL  = Yii::getAlias(Yii::$app->controller->module->categoryThumbPath."large/").$this->image;
-		$imageXL = Yii::getAlias(Yii::$app->controller->module->categoryThumbPath."extra/").$this->image;
-		
 		// check if image exists on server
-        if (empty($this->image) || !file_exists($image)) {
+        if (empty($this->image)/* || !file_exists($image)*/) {
             return false;
         }
 		
-		// check if uploaded file can be deleted on server
-		if (unlink($image)) 
-		{
-			unlink($imageS);
-			unlink($imageM);
-			unlink($imageL);
-			unlink($imageXL);
-			
-			return true;
-			
-		} else {
-			return false;
-		}
-		
+        $image   = Yii::$app->controller->module->categoryImagePath_ecommerce.$this->image;
+        $imageS  = Yii::$app->controller->module->categoryThumbPath_ecommerce."small/".$this->image;
+
+        //$s3 = Yii::$app->get('s3bucketService');
+        //$s3->delete($image);
+        //$s3->delete($imageS);
+
+        //Yii::$app->s3bucketService->delete($image);
+        //Yii::$app->s3bucketService->delete($imageS);
+        // remared because of 403 error
+
+        return true;
+
 	}
 
     /**

@@ -27,6 +27,7 @@ class Items extends Articles
     /**
      * @inheritdoc
      */
+
     public function rules()
     {
         return [
@@ -99,7 +100,8 @@ class Items extends Articles
      * @return string
      */
     public function getItemUrl() {
-        return Url::to(['/articles/items/view', 'id' => $this->id, 'alias' => $this->alias, 'cat' => $this->category->alias]);
+        return Url::to(['/articles/items/view', 'id' => $this->alias, 'cat' => $this->category->alias]);
+        //return Url::to(['/articles/items/view', 'id' => $this->id, 'alias' => $this->alias, 'cat' => $this->category->alias]);
     }
 
 	/**
@@ -114,11 +116,11 @@ class Items extends Articles
      * fetch stored file url
      * @return string
      */
-    public function getImageUrl() 
+    public function getImageUrl()
     {
         // return a default image placeholder if your source avatar is not found
-        $file = isset($this->image) ? $this->image : 'default.jpg';
-        return Yii::getAlias(Yii::$app->controller->module->itemImageURL).$file;
+        $image   = Yii::$app->controller->module->itemImagePath_ecommerce.'/'.$this->image;
+        return Yii::$app->s3bucketService->getPresignedUrl($image, '+2 hours');
     }
 
     /**
@@ -126,11 +128,11 @@ class Items extends Articles
      * @param $size
      * @return string
      */
-    public function getImageThumbUrl($size)
+    public function getImageThumbUrl($size = 'small')
     {
         // return a default image placeholder if your source avatar is not found
-        $file = isset($this->image) ? $this->image : 'default.jpg';
-        return Yii::getAlias(Yii::$app->controller->module->itemImageURL)."thumb/".$size."/".$file;
+        $image   = Yii::$app->controller->module->itemThumbPath_ecommerce.$size.'/'.$this->image;
+        return Yii::$app->s3bucketService->getPresignedUrl($image, '+2 hours');
     }
 	
 	/**
@@ -139,31 +141,19 @@ class Items extends Articles
     */
 	public function deleteImage() 
 	{
-		$image   = Yii::getAlias(Yii::$app->controller->module->itemImagePath).$this->image;
-		$imageS  = Yii::getAlias(Yii::$app->controller->module->itemThumbPath."small/").$this->image;
-		$imageM  = Yii::getAlias(Yii::$app->controller->module->itemThumbPath."medium/").$this->image;
-		$imageL  = Yii::getAlias(Yii::$app->controller->module->itemThumbPath."large/").$this->image;
-		$imageXL = Yii::getAlias(Yii::$app->controller->module->itemThumbPath."extra/").$this->image;
-		
 		// check if image exists on server
-        if ( empty($this->image) || !file_exists($image) ) {
+        if ( empty($this->image)/* || !file_exists($image) */) {
             return false;
         }
-		
-		// check if uploaded file can be deleted on server
-		if (unlink($image))
-		{
-			unlink($imageS);
-			unlink($imageM);
-			unlink($imageL);
-			unlink($imageXL);
-			
-			return true;
-			
-		} else {
-			return false;
-		}
-		
+
+        $image   = Yii::$app->controller->module->itemImagePath_ecommerce.$this->image;
+        $imageS  = Yii::$app->controller->module->itemThumbPath_ecommerce."small/".$this->image;
+
+        //Yii::$app->s3bucketService->delete($image);
+        //Yii::$app->s3bucketService->delete($imageS);
+        // remared because of 403 error
+
+        return true;
 	}
 
     /**
@@ -233,7 +223,7 @@ class Items extends Articles
     public function getUser() {
         $userClass = Yii::$app->controller->module->userClass;
         $user = Yii::$container->get($userClass);
-        return $this->hasOne($userClass, ['id' => 'userid'])->from($user::tableName() . ' AS user');
+        return $this->hasOne($userClass, ['user_ID' => 'userid'])->from($user::tableName() . ' AS user');
     }
 
     /**
@@ -243,7 +233,7 @@ class Items extends Articles
     public function getCreatedby() {
         $userClass = Yii::$app->controller->module->userClass;
         $user = Yii::$container->get($userClass);
-        return $this->hasOne($userClass, ['id' => 'created_by'])->from($user::tableName() . ' AS createdby');
+        return $this->hasOne($userClass, ['user_ID' => 'created_by'])->from($user::tableName() . ' AS createdby');
     }
 
     /**
@@ -253,7 +243,7 @@ class Items extends Articles
     public function getModifiedby() {
         $userClass = Yii::$app->controller->module->userClass;
         $user = Yii::$container->get($userClass);
-        return $this->hasOne($userClass, ['id' => 'modified_by'])->from($user::tableName() . ' AS modifiedby');
+        return $this->hasOne($userClass, ['user_ID' => 'modified_by'])->from($user::tableName() . ' AS modifiedby');
     }
 
     /*

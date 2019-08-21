@@ -16,6 +16,12 @@ use yii\db\Schema;
 class m151021_200401_create_article_categories_table extends Migration
 {
 
+    public function init()
+    {
+        $this->db = 'ecommercedb';
+        parent::init();
+    }
+
     public function up()
     {
         $this->createTable('{{%article_categories}}', [

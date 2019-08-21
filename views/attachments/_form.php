@@ -47,7 +47,7 @@ if ($model->isNewRecord) {
             <div class="col-lg-12">
 
                 <p class="bg-info">
-                    <?= Yii::t('articles', 'Allowed Extensions')?>: <?= $attachType ?>
+                    <?= Yii::t('articles', 'Allowed Extensions')?>: <?= implode(',', $attachType); ?>
                 </p>
 
             </div>

@@ -122,7 +122,7 @@ class ItemsController extends Controller
             if ( $model->load(Yii::$app->request->post()) )
             {
                 // Set Modified as actual date
-                $model->modified = "0000-00-00 00:00:00";
+                $model->modified = new \yii\db\Expression('NOW()');
 
                 // If alias is not set, generate it
                 if ($_POST['Items']['alias']=="")
@@ -133,13 +133,15 @@ class ItemsController extends Controller
                 // Upload Image and Thumb if is not Null
                 $imagePath   = Yii::getAlias(Yii::$app->controller->module->itemImagePath);
                 $thumbPath   = Yii::getAlias(Yii::$app->controller->module->itemThumbPath);
+                $imagePath_ecommerce = Yii::getAlias(Yii::$app->controller->module->itemImagePath_ecommerce);
+                $thumbPath_ecommerce = Yii::getAlias(Yii::$app->controller->module->itemThumbPath_ecommerce);
                 $imgNameType = Yii::$app->controller->module->imageNameType;
                 $imgOptions  = Yii::$app->controller->module->thumbOptions;
                 $imgName     = $model->title;
                 $fileField   = "image";
 
                 // Create UploadFile Instance
-                $image  = $model->uploadFile($imgName,$imgNameType,$imagePath,$fileField);
+                $image = $model->uploadFile($imgName,$imgNameType,$imagePath,$imagePath_ecommerce,$fileField,true);
 
                 if ($model->save()) {
 
@@ -147,7 +149,7 @@ class ItemsController extends Controller
                     if ($image !== false)
                     {
                         // save thumbs to thumbPaths
-                        $model->createThumbImages($image,$imagePath,$imgOptions,$thumbPath);
+                        $model->createThumbImages($image,$imagePath,$imgOptions,$thumbPath,$thumbPath_ecommerce);
                     }
 
                     // Set Success Message
@@ -204,13 +206,15 @@ class ItemsController extends Controller
                 // Upload Image and Thumb if is not Null
                 $imagePath = Yii::getAlias(Yii::$app->controller->module->itemImagePath);
                 $thumbPath = Yii::getAlias(Yii::$app->controller->module->itemThumbPath);
+                $imagePath_ecommerce = Yii::getAlias(Yii::$app->controller->module->itemImagePath_ecommerce);
+                $thumbPath_ecommerce = Yii::getAlias(Yii::$app->controller->module->itemThumbPath_ecommerce);
                 $imgNameType = Yii::$app->controller->module->imageNameType;
                 $imgOptions = Yii::$app->controller->module->thumbOptions;
                 $imgName = $model->title;
                 $fileField = "image";
 
                 // Create UploadFile Instance
-                $image = $model->uploadFile($imgName, $imgNameType, $imagePath, $fileField);
+                $image = $model->uploadFile($imgName, $imgNameType, $imagePath, $imagePath_ecommerce, $fileField, true);
 
                 if($model->image == false && $image === false) {
                     unset($model->image);
@@ -221,7 +225,7 @@ class ItemsController extends Controller
                     // upload only if valid uploaded file instance found
                     if ($image !== false) {
                         // save thumbs to thumbPaths
-                        $thumb = $model->createThumbImages($image, $imagePath, $imgOptions, $thumbPath);
+                        $model->createThumbImages($image, $imagePath, $imgOptions, $thumbPath, $thumbPath_ecommerce);
                     }
 
                     // Set Success Message
@@ -441,7 +445,7 @@ class ItemsController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Items::findOne($id)) !== null) {
+        if (($model = Items::find()->andWhere(['or',['id'=>$id],['alias'=>$id]])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

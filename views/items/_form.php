@@ -42,7 +42,8 @@ if (!$model->isNewRecord) {
 	$modified_by = $model->modified_by;
     $modified_by_username = isset($model->modifiedby->username) ? $model->modifiedby->username : $username;
     $created_by  = $model->created_by;
-    $created_by_username = $model->createdby->username;
+    $created_by_username = isset($model->createdby->username) ? $model->createdby->username : $username;
+    //$created_by_username = $model->createdby->username;
 } else { 
 	$modified_by = 0;
     $modified_by_username = Yii::t('articles', 'Nobody');
@@ -89,6 +90,7 @@ $select2videotype = $model->getVideoTypeSelect2();
                     <li class="">
                     	<a data-toggle="tab" href="#image"><?= Yii::t('articles', 'Image') ?></a>
                     </li>
+                    <?php /*
                     <li class="">
                     	<a data-toggle="tab" href="#video"><?= Yii::t('articles', 'Video') ?></a>
                     </li>
@@ -97,7 +99,7 @@ $select2videotype = $model->getVideoTypeSelect2();
 					</li>
                     <li class="">
                     	<a data-toggle="tab" href="#params"><?= Yii::t('articles', 'Options') ?></a>
-                    </li>
+                    </li>*/ ?>
                 </ul>
                 
                 <div class="tab-content" id="myTabContent">
@@ -454,14 +456,14 @@ $select2videotype = $model->getVideoTypeSelect2();
                     <div id="image" class="tab-pane fade">
                     
                     	<p class="bg-info">
-							<?= Yii::t('articles', 'Allowed Extensions')?>: <?= $imagetype ?>
+							<?= Yii::t('articles', 'Allowed Extensions')?>: <?= implode(', ', $imagetype); ?>
                         </p>
                         
                         <div class="col-lg-6">
                         
                         	<?= $form->field($model, 'image')->widget(FileInput::classname(), [
                                 	'options' => [
-                                    	'accept' => 'image/'.$imagetype
+                                    	'accept' => 'image/' . implode(', image/', $imagetype)
                                     ],
                                     'pluginOptions' => [
                                         'previewFileType' => 'image',
@@ -473,7 +475,7 @@ $select2videotype = $model->getVideoTypeSelect2();
                             <?php if ( isset($model->image) && !empty($model->image) ): ?>
                             
                             <div class="thumbnail">                       	
-                            	<img alt="200x200" class="img-thumbnail" data-src="holder.js/300x250" style="width: 300px;" src="<?= $model->getImageUrl() ?>">
+                            	<img alt="200x200" class="img-thumbnail" data-src="holder.js/300x250" style="width: 300px;" src="<?= $model->getImageThumbUrl('small') ?>">
                             	<div class="caption">
                             		<p></p>
                             	    <p>
@@ -512,7 +514,7 @@ $select2videotype = $model->getVideoTypeSelect2();
                         </div> <!-- col-lg-6 -->
                     
                     </div> <!-- #image -->
-                    
+                    <?php /*
                     <div id="video" class="tab-pane fade">
                     
                     	<div class="col-lg-6">
@@ -557,7 +559,8 @@ $select2videotype = $model->getVideoTypeSelect2();
                         </div> <!-- end col-lg-6 -->
                     
                     </div> <!-- end video -->
-
+                    */ ?>
+                    <?php /*
 					<div id="attach" class="tab-pane fade">
 
                         <div class="col-lg-12">
@@ -585,13 +588,14 @@ $select2videotype = $model->getVideoTypeSelect2();
                         </div> <!-- end col-lg-12 -->
 
 					</div> <!-- end attach -->
-                    
+                    */ ?>
+                    <?php /*
                     <div id="params" class="tab-pane fade">
                     	
                         <?= $form->field($model, 'params')->textarea(['rows' => 6]) ?>
                     
                     </div> <!-- #params -->
-            
+                    */ ?>
             </div> <!-- end bs-example-tabs -->
 
             <div class="col-lg-12">

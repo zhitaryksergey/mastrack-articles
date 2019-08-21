@@ -16,6 +16,12 @@ use yii\db\Schema;
 class m151021_200427_create_article_items_table extends Migration
 {
 
+    public function init()
+    {
+        $this->db = 'ecommercedb';
+        parent::init();
+    }
+
     public function up()
     {
         $this->createTable('{{%article_items}}', [
@@ -39,9 +45,9 @@ class m151021_200427_create_article_items_table extends Migration
             'video_type' => $this->string(20)->defaultValue(null),
             'video_caption' => $this->string(255)->defaultValue(null),
             'video_credits' => $this->string(255)->defaultValue(null),
-            'created' => $this->dateTime()->notNull()->defaultValue('0000-00-00 00:00:00'),
+            'created' => $this->dateTime()->notNull(),
             'created_by' => $this->integer(11)->notNull()->defaultValue(0),
-            'modified' => $this->dateTime()->notNull()->defaultValue('0000-00-00 00:00:00'),
+            'modified' => $this->dateTime()->notNull(),
             'modified_by' => $this->integer(11)->notNull()->defaultValue(0),
             'params' => $this->text(),
             'metadesc' => $this->text(),

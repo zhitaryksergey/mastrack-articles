@@ -271,14 +271,14 @@ $themes    = $model->getThemesSelect2();
 					<div id="image" class="tab-pane fade">
                     
                     	<p class="bg-info">
-							<?= Yii::t('articles', 'Allowed Extensions')?>: <?= $imagetype ?>
-						</p>
+							<?= Yii::t('articles', 'Allowed Extensions')?>: <?= implode(', ', $imagetype); ?>
+                        </p>
                     
                     	<div class="col-lg-6">
                                                 
                         	<?= $form->field($model, 'image')->widget(FileInput::classname(), [
                                 	'options' => [
-                                    	'accept' => 'image/'.$imagetype
+                                        'accept' => 'image/' . implode(', image/', $imagetype)
                                     ],
                                     'pluginOptions' => [
                                         'previewFileType' => 'image',
@@ -290,7 +290,7 @@ $themes    = $model->getThemesSelect2();
                             <?php if ( isset($model->image) && !empty($model->image) ): ?>
                             
                             <div class="thumbnail">                       	
-                            	<img alt="200x200" class="img-thumbnail" data-src="holder.js/300x250" style="width: 300px;" src="<?= $model->getImageUrl() ?>">
+                            	<img alt="200x200" class="img-thumbnail" data-src="holder.js/300x250" style="width: 300px;" src="<?= $model->getImageThumbUrl('small') ?>">
                             	<div class="caption">
                             		<p></p>
                             	    <p>
@@ -347,9 +347,7 @@ $themes    = $model->getThemesSelect2();
 									'name' => 'categoriesImageWidth',
 									'data' => [ 
 										'small'  => Yii::t('articles', 'Small'), 
-										'medium' => Yii::t('articles', 'Medium'), 
-										'large'  => Yii::t('articles', 'Large'), 
-										'extra'  => Yii::t('articles', 'Extra')
+										'extra'  => Yii::t('articles', '')
 									],
 								]);
 								echo '</div>';
@@ -460,12 +458,10 @@ $themes    = $model->getThemesSelect2();
 								echo '<label class="control-label">'.Yii::t('articles', 'Image Width').'</label>';
 								echo Select2::widget([
 									'name' => 'categoryImageWidth',
-									'data' => [
-										'small'  => Yii::t('articles', 'Small'),
-										'medium' => Yii::t('articles', 'Medium'),
-										'large'  => Yii::t('articles', 'Large'),
-										'extra'  => Yii::t('articles', 'Extra')
-									],
+                                    'data' => [
+                                        'small'  => Yii::t('articles', 'Small'),
+                                        'extra'  => Yii::t('articles', '')
+                                    ],
 								]);
 								echo '</div>';
 
@@ -575,12 +571,10 @@ $themes    = $model->getThemesSelect2();
 								echo '<label class="control-label">'.Yii::t('articles', 'Image Width').'</label>';
 								echo Select2::widget([
 									'name' => 'itemImageWidth',
-									'data' => [
-										'small'  => Yii::t('articles', 'Small'),
-										'medium' => Yii::t('articles', 'Medium'),
-										'large'  => Yii::t('articles', 'Large'),
-										'extra'  => Yii::t('articles', 'Extra')
-									],
+                                    'data' => [
+                                        'small'  => Yii::t('articles', 'Small'),
+                                        'extra'  => Yii::t('articles', '')
+                                    ],
 								]);
 								echo '</div>';
 

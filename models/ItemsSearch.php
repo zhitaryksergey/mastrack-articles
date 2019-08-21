@@ -56,9 +56,9 @@ class ItemsSearch extends Items
         }
 
         $query->joinWith('category');
-        $query->joinWith('createdby');
-        $query->joinWith('modifiedby');
-        $query->joinWith('user');
+        //$query->joinWith('createdby');
+        //$query->joinWith('modifiedby');
+        //$query->joinWith('user');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

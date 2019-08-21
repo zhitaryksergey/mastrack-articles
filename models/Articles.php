@@ -17,6 +17,7 @@ use dektrium\user\models\User;
 use yii\db\ActiveRecord;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
+use yii\base\Model;
 
 class Articles extends ActiveRecord
 {
@@ -28,11 +29,23 @@ class Articles extends ActiveRecord
      * @param $fileField
      * @return mixed the uploaded image instance
      */
-    public function uploadFile($fileName,$fileNameType,$filePath,$fileField) 
+
+    public static function getDb()
+    {
+        if (Yii::$app->has('ecommercedb'))
+        {
+            return Yii::$app->get('ecommercedb');
+        }
+
+        return Yii::$app->get('db');
+    }
+
+    public function uploadFile($fileName,$fileNameType,$filePath,$amazonFilePath,$fileField,$deleteTempFile = true)
 	{
         // get the uploaded file instance. for multiple file uploads
         // the following data will return an array (you may need to use
         // getInstances method)
+
         $file = UploadedFile::getInstance($this, $fileField);
  
         // if no file was uploaded abort the upload
@@ -66,9 +79,10 @@ class Articles extends ActiveRecord
 			// update file->name
 			$file->name = $fileName.".{$fileExt}";
 			// save images to imagePath
-			$file->saveAs($filePath.$fileName.".{$fileExt}");
-	 
-			// the uploaded file instance
+            $file->saveAs($filePath.$fileName.".{$fileExt}", $deleteTempFile);
+            Yii::$app->s3bucketService->upload($amazonFilePath.$fileName.".{$fileExt}", $filePath.$fileName.".{$fileExt}");
+            //unlink($filePath.$fileName.".{$fileExt}");
+            // the uploaded file instance
 			return $file;
 		}
     }
@@ -81,24 +95,20 @@ class Articles extends ActiveRecord
      * @param $thumbPath
      * @return mixed the uploaded image instance
      */
-	public function createThumbImages($image,$imagePath,$imgOptions,$thumbPath)
+	public function createThumbImages($image,$imagePath,$imgOptions,$thumbPath,$amazonThumbPath)
 	{	
 		$imageName = $image->name;
 		$imageLink = $imagePath.$image->name;
 
         // Check thumbPath exist, else create
         $this->createDirectory($thumbPath);
-		
-		// Save Image Thumbs
+
+        // Save Image Thumbs
 		Image::thumbnail($imageLink, $imgOptions['small']['width'], $imgOptions['small']['height'])
 			->save($thumbPath."small/".$imageName, ['quality' => $imgOptions['small']['quality']]);
-		Image::thumbnail($imageLink, $imgOptions['medium']['width'], $imgOptions['medium']['height'])
-			->save($thumbPath."medium/".$imageName, ['quality' => $imgOptions['medium']['quality']]);
-		Image::thumbnail($imageLink, $imgOptions['large']['width'], $imgOptions['large']['height'])
-			->save($thumbPath."large/".$imageName, ['quality' => $imgOptions['large']['quality']]);
-		Image::thumbnail($imageLink, $imgOptions['extra']['width'], $imgOptions['extra']['height'])
-			->save($thumbPath."extra/".$imageName, ['quality' => $imgOptions['extra']['quality']]);		
-	}
+        Yii::$app->s3bucketService->upload($amazonThumbPath."small/".$imageName, $thumbPath."small/".$imageName);
+        unlink($thumbPath."small/".$imageName);
+    }
 
     /**
      * Generate fileName
@@ -192,9 +202,9 @@ class Articles extends ActiveRecord
 	public function getUsersSelect2($userid,$username)
 	{
         $users = User::find()
-            ->select(['id','username'])
-            ->where(['blocked_at' => null, 'unconfirmed_email' => null])
-            ->andWhere(['!=', 'id', $userid])
+            ->select(['user_ID','username'])
+            //->where(['blocked_at' => null, 'unconfirmed_email' => null])
+            ->andWhere(['!=', 'user_ID', $userid])
             ->all();
 
 		$array[$userid] = ucwords($username);
@@ -280,10 +290,7 @@ class Articles extends ActiveRecord
     protected function createDirectory($path)
     {
         $sizes = array(
-            'small',
-            'medium',
-            'large',
-            'extra',
+            'small'
         );
 
         foreach($sizes as $size)
