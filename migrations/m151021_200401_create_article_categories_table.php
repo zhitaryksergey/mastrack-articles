@@ -45,49 +45,39 @@ class m151021_200401_create_article_categories_table extends Migration
             'author' => $this->string(50),
             'copyright' => $this->string(50),
         ], $this->tableOptions);
+
+        $this->batchInsert(
+            '{{%article_categories}}',
+            ["id", "name", "alias", "description", "parentid", "state", "access", "language", "theme", "ordering", "image", "image_caption", "image_credits", "params", "metadesc", "metakey", "robots", "author", "copyright"],
+            [
+                [
+                    'id' => '1',
+                    'name' => 'News',
+                    'alias' => 'news',
+                    'description' => '',
+                    'parentid' => 0,
+                    'state' => '1',
+                    'access' => 'public',
+                    'language' => 'all',
+                    'theme' => 'blog',
+                    'ordering' => '1',
+                    'image' => '',
+                    'image_caption' => '',
+                    'image_credits' => '',
+                    'params' => '{"categoriesImageWidth":"small","categoriesIntroText":"No","categoriesFullText":"No","categoriesCreatedData":"No","categoriesModifiedData":"No","categoriesUser":"No","categoriesHits":"No","categoriesDebug":"No","categoryImageWidth":"medium","categoryIntroText":"Yes","categoryFullText":"No","categoryCreatedData":"Yes","categoryModifiedData":"No","categoryUser":"Yes","categoryHits":"Yes","categoryDebug":"No","itemImageWidth":"small","itemIntroText":"No","itemFullText":"No","itemCreatedData":"No","itemModifiedData":"No","itemUser":"No","itemHits":"No","itemDebug":"No"}',
+                    'metadesc' => '',
+                    'metakey' => '',
+                    'robots' => 'index, follow',
+                    'author' => '',
+                    'copyright' => '',
+                ]
+            ]
+        );
     }
 
     public function down()
     {
         $this->dropTable('{{%article_categories}}');
-    }
-    
-    public function safeUp()
-    {
-	    $now = new \yii\db\Expression('now()');
-
-        $this->batchInsert(
-            '{{%article_categories}}',
-             ["id", "name", "alias", "description", "parent_id", "state", "access", "language", "theme", "ordering", "image", "image_caption", "image_credits", "params", "metadesc", "metakey", "robots", "author", "copyright"],
-             [
-                 [
-                     'id' => '1',
-                     'name' => 'News',
-                     'alias' => 'news',
-                     'description' => '',
-                     'parent_id' => null,
-                     'state' => '1',
-                     'access' => 'public',
-                     'language' => 'all',
-                     'theme' => 'blog',
-                     'ordering' => '1',
-                     'image' => '',
-                     'image_caption' => '',
-                     'image_credits' => '',
-                     'params' => '{"categoriesImageWidth":"small","categoriesIntroText":"No","categoriesFullText":"No","categoriesCreatedData":"No","categoriesModifiedData":"No","categoriesUser":"No","categoriesHits":"No","categoriesDebug":"No","categoryImageWidth":"medium","categoryIntroText":"Yes","categoryFullText":"No","categoryCreatedData":"Yes","categoryModifiedData":"No","categoryUser":"Yes","categoryHits":"Yes","categoryDebug":"No","itemImageWidth":"small","itemIntroText":"No","itemFullText":"No","itemCreatedData":"No","itemModifiedData":"No","itemUser":"No","itemHits":"No","itemDebug":"No"}',
-                     'metadesc' => '',
-                     'metakey' => '',
-                     'robots' => 'index, follow',
-                     'author' => '',
-                     'copyright' => '',
-                 ]
-             ]
-        );
-    }
-    
-    public function safeDown()
-    {
-        $this->truncateTable('{{%article_categories}}');
     }
 
 }
