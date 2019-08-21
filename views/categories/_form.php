@@ -346,8 +346,7 @@ $themes    = $model->getThemesSelect2();
 								echo Select2::widget([
 									'name' => 'categoriesImageWidth',
 									'data' => [ 
-										'small'  => Yii::t('articles', 'Small'), 
-										'extra'  => Yii::t('articles', '')
+										'small'  => Yii::t('articles', 'Small')
 									],
 								]);
 								echo '</div>';
