@@ -535,7 +535,7 @@ class ItemsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if(Yii::$app->language == $model->getLang() || $model->getLangTag() == "All")
+        if(Yii::$app->language == $model->getLang() || strtolower($model->getLangTag()) == "all")
         {
             return true;
         } else {
