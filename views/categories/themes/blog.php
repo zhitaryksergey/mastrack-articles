@@ -59,7 +59,7 @@ use yii\helpers\HtmlPurifier;
                         <?php endif ?>
                         <?php if($params->categoryUser == "Yes"): ?>
                         <div class="meta-info meta-info-user">
-                            <i class="glyphicon glyphicon-user"></i> <?= $article->createdby->username ?>
+                            <i class="glyphicon glyphicon-user"></i> <?= isset($article->createdby->username) ? $article->createdby->username : 'Admin' ?>
                         </div>
                         <?php endif ?>
                         <?php if($params->categoryHits == "Yes"): ?>
