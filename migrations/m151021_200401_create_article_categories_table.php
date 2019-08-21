@@ -64,7 +64,7 @@ class m151021_200401_create_article_categories_table extends Migration
                     'image' => '',
                     'image_caption' => '',
                     'image_credits' => '',
-                    'params' => '{"categoriesImageWidth":"small","categoriesIntroText":"No","categoriesFullText":"No","categoriesCreatedData":"No","categoriesModifiedData":"No","categoriesUser":"No","categoriesHits":"No","categoriesDebug":"No","categoryImageWidth":"medium","categoryIntroText":"Yes","categoryFullText":"No","categoryCreatedData":"Yes","categoryModifiedData":"No","categoryUser":"Yes","categoryHits":"Yes","categoryDebug":"No","itemImageWidth":"small","itemIntroText":"No","itemFullText":"No","itemCreatedData":"No","itemModifiedData":"No","itemUser":"No","itemHits":"No","itemDebug":"No"}',
+                    'params' => '{"categoriesImageWidth":"small","categoriesIntroText":"No","categoriesFullText":"No","categoriesCreatedData":"No","categoriesModifiedData":"No","categoriesUser":"No","categoriesHits":"No","categoriesDebug":"No","categoryImageWidth":"small","categoryIntroText":"Yes","categoryFullText":"No","categoryCreatedData":"Yes","categoryModifiedData":"No","categoryUser":"Yes","categoryHits":"Yes","categoryDebug":"No","itemImageWidth":"small","itemIntroText":"No","itemFullText":"No","itemCreatedData":"No","itemModifiedData":"No","itemUser":"No","itemHits":"No","itemDebug":"No"}',
                     'metadesc' => '',
                     'metakey' => '',
                     'robots' => 'index, follow',
